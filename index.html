@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapchat+</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #1E1E1E;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #453605, #8d6d04);
+            padding: 30px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        header img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .features {
+            padding: 20px;
+        }
+
+        .feature {
+            background: #292929;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: #BDBDBD;
+            margin: 0;
+            text-align: left;
+            flex: 1;
+        }
+
+        .cta-button, .free-button {
+            padding: 15px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .cta-button {
+            background: black;
+            color: #FFC400;
+        }
+
+        .cta-button:hover {
+            background: #333333;
+        }
+
+        .free-button {
+            background: #FFC400;
+            color: black;
+        }
+
+        .free-button:hover {
+            background: #3b2e01;
+        }
+
+        footer {
+            font-size: 12px;
+            color: #BDBDBD;
+            padding: 10px;
+        }
+
+        footer a {
+            color: #FFC400;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .feature {
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+            }
+
+            .feature img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .cta-button, .free-button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="logo+snap.png" alt="Logo Snapchat+">
+        </header>
+
+        <div class="features">
+            <div class="feature">
+                <img src="etoile_snap.png" alt="Étoile Snap">
+                <p>Ajoutez une étoile noire à votre nom affiché.</p>
+            </div>
+            <div class="feature">
+                <img src="logosnap+.png" alt="Snapchat+">
+                <p>Accédez à des icônes Snapchat exclusives.</p>
+            </div>
+            <div class="feature">
+                <img src="emoji_snap.png" alt="Emoji Snap">
+                <p>Modifiez le fond d'écran de vos conversations.</p>
+            </div>
+            <div class="feature">
+                <img src="crayon_snap.png" alt="Crayon Snap">
+                <p>Personnalisez la couleur de votre pseudo.</p>
+            </div>
+        </div>
+
+        <button class="free-button" onclick="goToFree()">Gratuit</button>
+        <button class="cta-button" onclick="showPlans()">Voir tous les forfaits</button>
+
+        <footer>
+            <p>Conditions et politiques d'abonnement, <a href="https://www.snap.com/terms/paid-features" target="_blank">fonctionnalités payantes</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function goToFree() {
+            window.location.href = "snapchat+.html";
+        }
+
+        function showPlans() {
+            window.location.href = "https://www.snap.com/terms/paid-features";
+        }
+    </script>
+</body>
+</html>

