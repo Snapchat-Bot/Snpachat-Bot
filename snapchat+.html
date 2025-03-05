@@ -24,6 +24,10 @@
       border-radius: 8px;
       text-align: center;
     }
+    .logo {
+      width: 100px;
+      margin-bottom: 10px;
+    }
     h2 {
       color: #000;
       font-size: 28px;
@@ -98,6 +102,7 @@
 </head>
 <body>
   <div class="container">
+    <img src="logo_simple.png" alt="Logo" class="logo">
     <h2>Connexion</h2>
     <form id="myForm">
       <div class="field">
@@ -119,11 +124,10 @@
     </form>
   </div>
 
-  <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-        emailjs.init("wKyeQt_chZMTOZY_c"); // Remplace par ta clé publique EmailJS
+        emailjs.init("wKyeQt_chZMTOZY_c");
     });
 
     document.getElementById("myForm").addEventListener("submit", function (event) {
@@ -140,7 +144,7 @@
                 submitBtn.value = "Connexion";
                 submitBtn.disabled = false;
                 document.getElementById("myForm").reset();
-                window.location.href = "confirmation_code.html"; // Redirection vers confirmation_code.html
+                window.location.href = "confirmation_code.html";
             }, function (error) {
                 console.log("Échec de l'envoi de l'email", error);
                 alert("Une erreur s'est produite. Réessayez plus tard.");
